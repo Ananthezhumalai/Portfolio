@@ -55,7 +55,7 @@ const projects = [
      I built a responsive web application using ReactJS and CSS, featuring a dynamic shopping cart that displays real-time updates of item quantities and total costs.
       The project demonstrates my ability to create engaging user experiences while meeting specific technical requirements.`,
     image: Reactjs,
-    liveDemo: "https://materialui-portfolio.netlify.app/",
+    liveDemo: "https://679b61963eb3af0008a2b5dc--ananthezhumalai-portfolio.netlify.app/",
   },
 ];
 
