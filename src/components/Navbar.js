@@ -27,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
     background: "#222",
     margin: 0,
   },
+  avatar: {
+    width: theme.spacing(15),
+    height: theme.spacing(15),
+    margin: theme.spacing(1),
+  },
   arrow: {
     color: "tomato",
     // backgroundColor:"#551111"
@@ -64,7 +69,7 @@ const Navbar = () => {
 
   const sideList = () => (
     <Box className={classes.menuSliderContainer} component="div">
-      <Avatar className={classes.avatar} src={avatar} alt="Mahmudul Alam" />
+      <Avatar className={classes.avatar} src={avatar} alt="Ananth Ezhumalai"  />
       <Divider />
       <List>
         {menuItems.map((item, i) => (
