@@ -95,16 +95,27 @@ const Navbar = () => {
     <React.Fragment>
       <Box component="nav">
         <AppBar position="static" className={classes.appbar}>
-          <Toolbar>
-            <IconButton onClick={() => setOpen(true)}
-              style={{
-                backgroundColor:"#551111"
-              }}>
-              <ArrowBack className={classes.arrow} />
-            </IconButton>
-            <Typography variant="h5" className={classes.title}>
-              Portfolio
-            </Typography>
+          <Toolbar  style={{ display: "flex", justifyContent: "center", width: "100%"}}>
+          
+            <List>
+              <List style={{ display: "flex", flexDirection: "row", padding: 0 }} >
+        {menuItems.map((item, i) => (
+          <ListItem
+            button
+            key={i}
+            className={classes.listItem}
+            onClick={() => setOpen(false)}
+            component={Link}
+            to={item.listPath}
+          >
+            <ListItemIcon className={classes.listItem}>
+              {item.listIcon}
+            </ListItemIcon>
+            <ListItemText variant="h5" primary={item.listText} />
+          </ListItem>
+        ))}
+        </List> 
+      </List>
           </Toolbar>
         </AppBar>
       </Box>
@@ -117,3 +128,12 @@ const Navbar = () => {
 };
 
 export default Navbar;
+  {/* <IconButton onClick={() => setOpen(true)}
+              style={{
+                backgroundColor:"#551111"
+              }}> */}
+              {/* <ArrowBack className={classes.arrow} /> */}
+            {/* </IconButton> */}
+            {/* <Typography variant="h5" className={classes.title}>
+              Portfolio
+            </Typography> */}

@@ -66,41 +66,41 @@ const Contact = () => {
   const [name, setName] = useState("");
 const [email, setEmail] = useState("");
 const [message, setMessage] = useState("");
-const handleSubmit = (e) => {
-  e.preventDefault(); // Prevent default form submission
+// const handleSubmit = (e) => {
+//   e.preventDefault(); // Prevent default form submission
 
-  const formData = {
-    name,
-    email,
-    message,
-  };
+//   const formData = {
+//     name,
+//     email,
+//     message,
+//   };
 
-  // Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_USER_ID' with your EmailJS service and user IDs
-  emailjs
-    .send(
-      // "service_msoyli7",
-      "service_msoyli7",
-      // "ananthezhumalai@gmail.com",
-      "template_czswdbo",
-       formData,
-       "ananthezhumalai@gmail.com",
-       "plXAxOecJn1fRA4ye"
-      )
-    .then(
-      (response) => {
-        console.log("SUCCESS!", response.status, response.text);
-        alert("Message sent successfully!");
-        // Reset form fields
-        setName("");
-        setEmail("");
-        setMessage("");
-      },
-      (err) => {
-        console.log("FAILED...", err);
-        alert("An error occurred while sending the message.");
-      }
-    );
-};
+//   // Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_USER_ID' with your EmailJS service and user IDs
+//   emailjs
+//     .send(
+//       // "service_msoyli7",
+//       "service_msoyli7",
+//       // "ananthezhumalai@gmail.com",
+//       "template_czswdbo",
+//        formData,
+//        "ananthezhumalai@gmail.com",
+//        "plXAxOecJn1fRA4ye"
+//       )
+//     .then(
+//       (response) => {
+//         console.log("SUCCESS!", response.status, response.text);
+//         alert("Message sent successfully!");
+//         // Reset form fields
+//         setName("");
+//         setEmail("");
+//         setMessage("");
+//       },
+//       (err) => {
+//         console.log("FAILED...", err);
+//         alert("An error occurred while sending the message.");
+//       }
+//     );
+// };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault(); // Prevent the default form submission
@@ -134,12 +134,45 @@ const handleSubmit = (e) => {
   //     alert("An error occurred while sending the message.");
   //   }
   // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+  
+    const formData = {
+      name,
+      email,
+      message,
+    };
+  
+    try {
+      const response = await fetch("http://localhost:5001/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+        alert("Message sent successfully!");
+        // Reset form fields
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while sending the message.");
+    }
+  };
   return (
     <Box component="div" className={classes.contactContainer}>
       <Grid container justify="center">
         <Box component="form" className={classes.form}>
           <Typography variant="h5" className={classes.heading}>
-            Hire or Contact me...
+             Contact me Here...
           </Typography>
           <InputField
             fullWidth={true}
@@ -174,7 +207,7 @@ const handleSubmit = (e) => {
             fullWidth={true}
             endIcon={<Send />}
             className={classes.button}
-            // onClick={handleSubmit}
+            onClick={handleSubmit}
           >
             Contact Me
           </Button>
